@@ -1,0 +1,25 @@
+{
+  "name": "event-visualizer",
+  "version": "1.0.0",
+  "description": "Visualize global events in real time",
+  "private": true,
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nahkh/event-visualizer.git"
+  },
+  "author": "Juuso Valli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nahkh/event-visualizer/issues"
+  },
+  "homepage": "https://github.com/nahkh/event-visualizer#readme",
+  "dependencies": {
+    "csv": "1.1.1",
+    "express": "4.14.1",
+    "express-sse": "0.4.1"
+  }
+}
