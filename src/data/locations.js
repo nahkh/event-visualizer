@@ -1,9 +1,13 @@
-var csv = require('csv');
-var fs = require('fs');
+'use strict';
+
 var _ = require('underscore');
+var fs = require('fs');
+var parse = require('csv-parse/lib/sync');
+
 
 module.exports = (() => {
-  let rows = csv.parse(fs.readFileSync('./src/server/data/clean.csv', { encoding: 'utf-8'}));
+  let fileContents = fs.readFileSync('./src/data/clean.csv', { encoding: 'utf-8'});
+  let rows = parse(fileContents);
   let countries = {};
   _.forEach(rows, row => {
     let country = countries[row[0]];
@@ -16,12 +20,12 @@ module.exports = (() => {
       longitude: row[3]
     };
   });
-
+  
   return {
     getCoordinates(countryCode, locality) {
-      let country = rows[countryCode];
+      let country = countries[countryCode.toLowerCase()];
       if (country) {
-        return country[locality];
+        return country[locality.toLowerCase()];
       }
     }
   };
