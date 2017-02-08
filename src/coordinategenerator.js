@@ -37,13 +37,12 @@ const fixedLocations = [
 	}
 ];
 
-Rx.Observable.interval(100)
+Rx.Observable.interval(1000)
 	.timeInterval()
 	.subscribe(index => {
 		let location = fixedLocations[parseInt(index.value) % fixedLocations.length];
 		if(location) {
 			let coordinates = locations.getCoordinates(location.countryCode, location.locality);
-			//let coordinates = {latitude:0, longitude:0};
 			eventSource.sendEvent(coordinates);
 		}
 	});

@@ -10,11 +10,11 @@ const renderer = (() => {
 		ctx.clearRect(0,0, canvas.width, canvas.height);
 		for(let i = 0; i < events.length; ++i) {
 			let event = events[i];
-			console.log(event);
 			ctx.beginPath();
-			ctx.arc(event.x, event.y, 31 - event.z, 0, Math.PI * 2, true);
+			let radius = Math.sqrt(10000 - event.z*event.z)/3;
+			ctx.arc(event.x, event.y, radius, 0, Math.PI * 2, true);
 			ctx.closePath();
-			ctx.fillStyle = `rgba(0, 0, 0, ${event.z/30})`;
+			ctx.fillStyle = `rgba(0, 0, 0, ${event.z/100})`;
 			ctx.fill();
 			if(!(--event.z)) {
 				events.splice(i, 1);
@@ -24,11 +24,12 @@ const renderer = (() => {
 	};
 	
 	const createEvent = (latitude, longitude) => {
-		let x = (longitude+180.0)*(canvas.width/360.0);
+		let width = canvas.width;
+		let x = (longitude+180.0)*(width/360.0);
 		let latRad = latitude * Math.PI / 180.0;
 		let mercN = Math.log(Math.tan(Math.PI/4 + latRad/2));
 		let y = (canvas.height/2)-(canvas.width*mercN/(2*Math.PI)) + 115; // magic fudge
-		return {x, y, z: 30};
+		return {x, y, z: 100};
 	}
 	
 	
