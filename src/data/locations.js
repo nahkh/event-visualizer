@@ -2,7 +2,7 @@
 
 var _ = require('underscore');
 var fs = require('fs');
-var parse = require('csv-parse/lib/sync');
+var parse = require('csv/node_modules/csv-parse/lib/sync');
 
 
 module.exports = (() => {

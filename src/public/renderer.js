@@ -25,7 +25,7 @@ const renderer = (() => {
 	
 	const createEvent = (latitude, longitude) => {
 		let width = canvas.width;
-		let x = (longitude+180.0)*(width/360.0);
+		let x = (longitude+180.0)*((width-80)/360.0)+40;
 		let latRad = latitude * Math.PI / 180.0;
 		let mercN = Math.log(Math.tan(Math.PI/4 + latRad/2));
 		let y = (canvas.height/2)-(canvas.width*mercN/(2*Math.PI)) + 115; // magic fudge
