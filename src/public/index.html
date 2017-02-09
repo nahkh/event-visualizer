@@ -1,12 +1,15 @@
 <html>
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link href="resources/styles.css" rel="stylesheet">
 </head>
 <body>
-	<div width="1652px" height="1220px">
-		<canvas id="worldMapCanvas" width="1652" height="1220" style="position: relative; width: 100%; z-index:2"></canvas>
-		<img src="resources/Mercator_Projection.svg" style="position:absolute; top:0; left:0; width:100%"/>
-		<div style="position:fixed; top: 0; right:0; margin: 30px;"><h1 style="font-family: 'Lato', sans-serif; color: #b9b9b9; -webkit-text-stroke: 1px black;">Shipments in SAPI</h1></div>
+	<div class="main-container">
+		<div class="map-container">
+			<canvas id="worldMapCanvas" width="1652" height="1220"></canvas>
+			<img id="staticMap" src="resources/Mercator_Projection.svg"/>
+			<div class="banner"><h1>Shipments in SAPI</h1></div>
+		</div>
 	</div>
 	<script src="resources/renderer.js"></script>
 	<script src="resources/eventhandler.js"></script>

@@ -1,0 +1,28 @@
+#worldMapCanvas {
+	position: 	relative; 
+	width: 		100%; 
+	z-index:	2;
+}
+
+#staticMap {
+	position:	absolute; 
+	top:		0; 
+	left:		0; 
+	width:		100%;
+}
+
+.banner { 
+	position:	fixed; 
+	top: 		0; 
+	right:		0; 
+	margin: 	30px;
+}
+
+.banner h1 {
+	font-size: 2.5em;
+	font-family: 'Lato', sans-serif; 
+	color: 		black; 
+	-webkit-text-fill-color: white;
+	-webkit-text-stroke: 1px grey;
+	margin: 0px;
+}
