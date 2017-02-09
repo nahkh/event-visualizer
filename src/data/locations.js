@@ -16,16 +16,34 @@ module.exports = (() => {
       countries[row[0]] = country;
     }
     country[row[1]] = {
-      latitude: row[2],
-      longitude: row[3]
+      latitude: parseFloat(row[2]),
+      longitude: parseFloat(row[3])
     };
   });
+  
+  for (let countryCode in countries) {
+	  if (!countries.hasOwnProperty(countryCode)) {
+		  continue;
+	  }
+	  const cities = _.pairs(countries[countryCode]);
+	  const average_longitude = _.reduce(cities, (mem, c) => mem + c[1].longitude, 0) / cities.length;
+	  const average_latitude = _.reduce(cities, (mem, c) => mem + c[1].latitude, 0) / cities.length;
+	  countries[countryCode].average = {
+		  longitude: average_longitude,
+		  latitude: average_latitude,
+	  };
+  }
+  
   
   return {
     getCoordinates(countryCode, locality) {
       let country = countries[countryCode.toLowerCase()];
       if (country) {
-        return country[locality.toLowerCase()];
+        let coordinates = country[locality.toLowerCase()];
+		if (!coordinates) {
+			coordinates = country.average;
+		}
+		return coordinates;
       }
     }
   };

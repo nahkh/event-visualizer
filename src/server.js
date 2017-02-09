@@ -3,7 +3,7 @@
 var express = require('express');
 var eventSource = require('./eventsource.js');
 var locations = require('./data/locations.js');
-require('./coordinategenerator.js');
+var generator = require('./simulatedremotedatasource.js');
 
 module.exports = (() => {
 	var app = express();
@@ -12,6 +12,9 @@ module.exports = (() => {
 	app.get('/', (req, res) => {
 		res.sendFile(__dirname + '/public/index.html');
 	});
+	
+	generator.start();
+
 
 	return app.listen(5000, () => {
 		console.log('Listening on port 5000!');
