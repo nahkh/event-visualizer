@@ -3,7 +3,7 @@
 var express = require('express');
 var eventSource = require('./eventsource.js');
 var locations = require('./data/locations.js');
-var generator = require('./simulatedremotedatasource.js');
+var generator = require('./remotedatasource.js');
 
 module.exports = (() => {
 	var app = express();

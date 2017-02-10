@@ -14,7 +14,8 @@ const renderer = (() => {
 			let radius = Math.sqrt(10000 - event.z*event.z)/3;
 			ctx.arc(event.x, event.y, radius, 0, Math.PI * 2, true);
 			ctx.closePath();
-			ctx.fillStyle = `rgba(0, 0, 0, ${event.z/100})`;
+			console.log(event.color);
+			ctx.fillStyle = `rgba(${event.color.r}, ${event.color.g}, ${event.color.b}, ${event.z/100})`;
 			ctx.fill();
 			if(!(--event.z)) {
 				events.splice(i, 1);
@@ -29,7 +30,7 @@ const renderer = (() => {
 		let latRad = latitude * Math.PI / 180.0;
 		let mercN = Math.log(Math.tan(Math.PI/4 + latRad/2));
 		let y = (canvas.height/2)-(canvas.width*mercN/(2*Math.PI)) + 115; // magic fudge
-		return {x, y, z: 100};
+		return {x, y, z: 100, color: getRandomColor()};
 	}
 	
 	
@@ -42,6 +43,13 @@ const renderer = (() => {
 	}
 })();
 
+function getRandomColor() {
+	return hsl2rgb(Math.random(), 1.0, 0.5);
+}
+
+function randomInt(limit) {
+	return Math.floor(Math.random() * limit);
+}
 
 
 

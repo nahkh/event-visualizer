@@ -27,6 +27,7 @@ module.exports = (() => {
 					const offsetTime = moment().subtract(offset, 'seconds');
 					while(cursorPosition < rows.length && moment(rows[cursorPosition][0]).isBefore(offsetTime)) {
 						let coordinates = locations.getCoordinates(rows[cursorPosition][1], rows[cursorPosition][2] || '');
+						coordinates.timestamp = moment().format('YYYY-MM-DD[T]HH:mm:ssZ');
 						eventSource.sendEvent(coordinates);
 						++cursorPosition;
 					}

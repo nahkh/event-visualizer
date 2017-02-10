@@ -1,5 +1,5 @@
-var eventSource = require('./eventsource.js');
-var locations = require('./data/locations');
+var eventSource = require('../eventsource.js');
+var locations = require('./locations');
 var Rx = require('rxjs');
 
 const fixedLocations = [
